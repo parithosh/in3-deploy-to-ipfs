@@ -12,5 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - run: sudo gem install pygments.rb
+      - run: gem install bundler
       - run: JEKYLL_ENV=production bundle exec jekyll build
