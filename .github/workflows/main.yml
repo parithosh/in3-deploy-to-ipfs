@@ -8,10 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: jekyll/jekyll
+    container: damnfine/jekyll-awscli
 
     steps:
       - uses: actions/checkout@v2
       - run: gem install pygments.rb
       - run: gem install bundler
+      - run: bundle install
       - run: JEKYLL_ENV=production bundle exec jekyll build
