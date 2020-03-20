@@ -21,3 +21,4 @@ jobs:
                id: upload
                with:
                  path: ./_site
+      - run: echo ${{ steps.upload.outputs.hash }}
