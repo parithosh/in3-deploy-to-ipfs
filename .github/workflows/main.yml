@@ -16,8 +16,9 @@ jobs:
       - run: gem install bundler
       - run: bundle install
       - run: JEKYLL_ENV=production bundle exec jekyll build
-        - name: Upload to IPFS
-          uses: aquiladev/ipfs-action@v0.1.1
-          id: upload
-          with:
-            path: ./_site
+
+               - name: Upload to IPFS
+               uses: aquiladev/ipfs-action@v0.1.2-alpha
+               id: upload
+               with:
+                 path: ./_site
