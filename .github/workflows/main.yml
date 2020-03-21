@@ -5,15 +5,35 @@ on:
     branches:
       - master
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container: jguyomard/hugo-builder
+# Stages
+stages:
+  # Build site stage
+  - stage: build
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        container: jguyomard/hugo-builder
 
-    steps:
-      - uses: actions/checkout@v2
-      - run: hugo -D
-      - uses: aquiladev/ipfs-action@v0.1.2-alpha
-        id: upload
-        with:
-          path: ./public
+        steps:
+          - uses: actions/checkout@v2
+          - run: hugo -D
+          - uses: aquiladev/ipfs-action@v0.1.2-alpha
+            id: upload
+            with:
+              path: ./public
+          - publish: '$(System.DefaultWorkingDirectory)/public'
+          displayName: 'Publish Artifact: public'
+          artifact: 'public'
+
+  # Stage app stage
+  - stage: staging
+    displayName: 'Stage app'
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+          - checkout: none
+        # Download pipeline artifact
+          - download: current
+            artifact: 'public'
