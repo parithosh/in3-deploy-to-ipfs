@@ -8,15 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: damnfine/jekyll-awscli
+    container: jguyomard/hugo-builder
 
     steps:
-      - uses: actions/checkout@v2
-      - run: gem install pygments.rb
-      - run: gem install bundler
-      - run: bundle install
-      - run: JEKYLL_ENV=production bundle exec jekyll build
+      - uses: actions/checkout@v2ls
+      - run: hugo -D
       - uses: aquiladev/ipfs-action@v0.1.2-alpha
         id: upload
         with:
-          path: ./_site
+          path: ./public
