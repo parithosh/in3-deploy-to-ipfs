@@ -11,7 +11,7 @@ jobs:
     container: jguyomard/hugo-builder
 
     steps:
-      - uses: actions/checkout@v2ls
+      - uses: actions/checkout@v2
       - run: hugo -D
       - uses: aquiladev/ipfs-action@v0.1.2-alpha
         id: upload
