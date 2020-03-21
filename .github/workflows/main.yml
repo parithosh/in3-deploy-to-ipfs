@@ -30,6 +30,7 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: public
+      - uses: actions/checkout@v2
       - script: |
           sudo add-apt-repository ppa:devops-slock-it/in3
           sudo apt-get install in3
