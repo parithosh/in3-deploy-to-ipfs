@@ -17,19 +17,17 @@ jobs:
         id: upload
         with:
           path: ./public
-      - name: Upload math result for job 1
-          uses: actions/upload-artifact@v1
-          with:
-            name: public
-            path: ./public
+      - uses: actions/upload-artifact@v1
+        with:
+          name: public
+          path: ./public
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download build result
-        uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v1
         with:
           name: public
 
